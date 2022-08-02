@@ -20,7 +20,9 @@ const Header = () => {
         <h1>todolist</h1>
       </div>
       <div className="header-button">
-        <button className="bt-upload">업로드</button>
+        <button className="bt-upload" onClick={() => navigate("/addboard")}>
+          업로드
+        </button>
         <button className="bt-logout" onClick={onLogout}>
           로그아웃
         </button>

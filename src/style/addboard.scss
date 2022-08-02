@@ -1,8 +1,8 @@
-.todo-wrapper{
+.addboard-wrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
-  .todo-body{
+  .addboard-body{
     display: flex;
     flex-direction: column;
     border:1px solid black;
@@ -10,8 +10,13 @@
       width: 40rem;
       display: flex;
     }
-    .todo-title {
+    .addboard-title {
       display: flex;
+      align-items: center;
+    }
+    .addboard-content{
+      display: flex;
+      align-items: center;
     }
   }
 }

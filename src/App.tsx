@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Header from "./component/header";
 import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
+import Addboard from "./pages/Addboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/addboard" element={<Addboard />} />
         </Routes>
       </BrowserRouter>
     </div>
