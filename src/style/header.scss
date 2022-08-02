@@ -3,6 +3,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  .header-home{
+    cursor: pointer;
+  }
   h1{
     margin-left: 3rem;
   }

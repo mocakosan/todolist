@@ -6,9 +6,9 @@ import "../style/signin.scss";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [loginEmail, setLoginEmail] = useState(""); // 코드 추가
-  const [loginPassword, setLoginPassword] = useState(""); // 코드 추가
-  const [user, setUser] = useState({}); // 코드 추가
+  const [loginEmail, setLoginEmail] = useState<string>("");
+  const [loginPassword, setLoginPassword] = useState<string>("");
+  const [user, setUser] = useState({});
   const onLogin = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
