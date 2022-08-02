@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth, db } from "../shared/firebase";
+import { useNavigate } from "react-router-dom";
+import "../style/signin.scss";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const [loginEmail, setLoginEmail] = useState(""); // 코드 추가
+  const [loginPassword, setLoginPassword] = useState(""); // 코드 추가
+  const [user, setUser] = useState({}); // 코드 추가
+  const onLogin = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      navigate("/home");
+      console.log(user);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="signin">
-      <input />
-      <input />
-      <button>로그인</button>
+      <h3>Login</h3>
+      <input
+        placeholder="Email"
+        onChange={(e) => {
+          setLoginEmail(e.target.value);
+        }}
+      />
+      <input
+        placeholder="Password"
+        onChange={(e) => {
+          setLoginPassword(e.target.value);
+        }}
+      />
+      <div className="signin-bt">
+        <button onClick={onLogin}>Login</button>
+        <button onClick={() => navigate("/signup")}>회원가입하러가기</button>
+      </div>
     </div>
   );
 };
