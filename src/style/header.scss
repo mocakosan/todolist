@@ -1,0 +1,12 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  h1{
+    margin-left: 3rem;
+  }
+  .header-button{
+    margin-right: 1rem;
+  }
+}
