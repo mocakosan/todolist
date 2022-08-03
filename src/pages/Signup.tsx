@@ -26,6 +26,7 @@ const Signup = () => {
         }}
       />
       <input
+        type="password"
         placeholder="Password"
         onChange={(e) => {
           setRegisterPassword(e.target.value);
