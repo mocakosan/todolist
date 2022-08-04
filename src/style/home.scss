@@ -3,15 +3,33 @@
   flex-direction: column;
   align-items: center;
   .todo-body{
+    width: 40rem;
     display: flex;
     flex-direction: column;
     border:1px solid black;
+    border-radius: 20px;
+    margin-bottom: 2rem;
     img{
       width: 40rem;
       display: flex;
     }
     .todo-title {
       display: flex;
+      h1{
+        margin-right: 2rem;
+      }
+    }
+    .todo-content{
+      display: flex;
+      h2{
+        margin-right: 2rem;
+      }
+    }
+    .todo-time{
+      display: flex;
+      h3{
+        margin-right: 2rem;
+      }
     }
   }
 }

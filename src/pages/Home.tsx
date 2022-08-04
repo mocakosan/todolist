@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../style/home.scss";
 import all from "../all.png";
-import { collection, getDocs, doc, DocumentData } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../shared/firebase";
-
-interface SnapshotData {
-  data: DocumentData;
-  id: string;
-}
 
 const Home = () => {
   const [list, setList] = useState([{}]);
-
+  //데이터 가져오기
   useEffect(() => {
     const getList = async () => {
       const listCollectionRef = collection(db, "todolist");
@@ -22,11 +17,14 @@ const Home = () => {
     getList();
   }, []);
   console.log(list);
+  //데이터 삭제
+  const onDelete = async () => {
+    await deleteDoc(doc(db, "todolist", "list"));
+  };
   return (
     <form className="todo-wrapper">
       {list.map((item: any) => (
         <div className="todo-body" key={item.id}>
-          <img src={all} alt="" />
           <div className="todo-title">
             <h1>제목</h1>
             <h1>{item.title}</h1>
@@ -39,6 +37,7 @@ const Home = () => {
             <h3>time</h3>
             <h3>{item.createdAt}</h3>
           </div>
+          <button onClick={onDelete}>삭제</button>
         </div>
       ))}
     </form>

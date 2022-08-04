@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "../style/addboard.scss";
 import { db } from "../shared/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const Addboard = () => {
@@ -12,12 +12,12 @@ const Addboard = () => {
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      const doc = await addDoc(listRef, {
+      const Doc = await setDoc(doc(db, "todolist", "list"), {
         title: newTitle,
         content: newContent,
-        createAt: Date.now(),
+        createdAt: Date.now(),
       });
-      console.log(doc.id);
+      console.log(Doc);
       navigate("/home");
     } catch (e) {
       console.error("Error adding document:", e);
