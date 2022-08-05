@@ -1,23 +1,21 @@
 import React, { useRef, useState } from "react";
 import "../style/addboard.scss";
 import { db } from "../shared/firebase";
-import { addDoc, collection, setDoc, doc } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const Addboard = () => {
   const navigate = useNavigate();
   const [newTitle, setNewTitle] = useState<string>("");
   const [newContent, setNewContent] = useState<string>("");
-  const listRef = collection(db, "todolist");
+  const listRef: any = collection(db, "todolist");
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      const Doc = await setDoc(doc(db, "todolist", "list"), {
+      await addDoc(listRef, {
         title: newTitle,
         content: newContent,
-        createdAt: Date.now(),
       });
-      console.log(Doc);
       navigate("/home");
     } catch (e) {
       console.error("Error adding document:", e);
@@ -27,7 +25,6 @@ const Addboard = () => {
   return (
     <form className="addboard-wrapper">
       <div className="addboard-body">
-        <input name="imag" type="file" />
         <div className="addboard-title">
           <h1>제목</h1>
           <input

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/home.scss";
 import all from "../all.png";
-import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc, deleteField } from "firebase/firestore";
 import { db } from "../shared/firebase";
 
 const Home = () => {
@@ -18,13 +18,14 @@ const Home = () => {
   }, []);
   console.log(list);
   //데이터 삭제
-  const onDelete = async () => {
-    await deleteDoc(doc(db, "todolist", "list"));
+  const onDelete = async (id: any) => {
+    const todoDoc = doc(db, "todolist", id);
+    await deleteDoc(todoDoc);
   };
   return (
-    <form className="todo-wrapper">
+    <div className="todo-wrapper">
       {list.map((item: any) => (
-        <div className="todo-body" key={item.id}>
+        <form className="todo-body" key={item.id}>
           <div className="todo-title">
             <h1>제목</h1>
             <h1>{item.title}</h1>
@@ -33,14 +34,16 @@ const Home = () => {
             <h2>오늘의 할일</h2>
             <h2>{item.content}</h2>
           </div>
-          <div className="todo-time">
-            <h3>time</h3>
-            <h3>{item.createdAt}</h3>
-          </div>
-          <button onClick={onDelete}>삭제</button>
-        </div>
+          <button
+            onClick={() => {
+              onDelete(item.id);
+            }}
+          >
+            삭제
+          </button>
+        </form>
       ))}
-    </form>
+    </div>
   );
 };
 
