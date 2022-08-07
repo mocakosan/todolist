@@ -3,8 +3,10 @@ import "../style/home.scss";
 import all from "../all.png";
 import { collection, getDocs, doc, deleteDoc, updateDoc, deleteField } from "firebase/firestore";
 import { db } from "../shared/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [list, setList] = useState([{}]);
   //데이터 가져오기
   useEffect(() => {
@@ -40,6 +42,13 @@ const Home = () => {
             }}
           >
             삭제
+          </button>
+          <button
+            onClick={() => {
+              navigate("/UpDateList", { state: { board: item } });
+            }}
+          >
+            수정
           </button>
         </form>
       ))}

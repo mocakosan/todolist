@@ -6,6 +6,7 @@ import Header from "./component/header";
 import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
 import Addboard from "./pages/Addboard";
+import UpDateList from "./pages/UpDateList";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/UpDateList" element={<UpDateList />} />
           <Route path="/addboard" element={<Addboard />} />
         </Routes>
       </BrowserRouter>
