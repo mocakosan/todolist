@@ -8,15 +8,14 @@ const UpDateList = () => {
   const locate: any = useLocation();
   const [newTitle, setNewTitle] = useState<string>("");
   const [newContent, setNewContent] = useState<string>("");
-  console.log(locate.state.board.id);
   const onUpdate = async () => {
-    const id = locate.state.board.id;
+    const id: any = locate.state.board.id;
     await updateDoc(doc(db, "todolist", id), { title: newTitle, content: newContent });
     navigate("/home");
   };
   return (
     <div className="todo-wrapper">
-      <form className="todo-body">
+      <div className="todo-body">
         <div className="todo-title">
           <h1>제목</h1>
           <input
@@ -38,7 +37,7 @@ const UpDateList = () => {
           />
         </div>
         <button onClick={onUpdate}>수정</button>
-      </form>
+      </div>
     </div>
   );
 };
