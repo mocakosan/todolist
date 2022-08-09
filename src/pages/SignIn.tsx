@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../shared/firebase";
 import { useNavigate } from "react-router-dom";
 import "../style/signin.scss";
@@ -9,11 +9,14 @@ const SignIn = () => {
   const [loginEmail, setLoginEmail] = useState<string>("");
   const [loginPassword, setLoginPassword] = useState<string>("");
   const [user, setUser] = useState({});
+
   const onLogin = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const auth = getAuth();
+      const user: any = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       navigate("/home");
-      console.log(user);
+      console.log(user.user);
+      localStorage.setItem("login-token", user.user.accessToken);
     } catch (error: any) {
       console.log(error.message);
     }

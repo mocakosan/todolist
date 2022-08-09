@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import { auth, db } from "../shared/firebase";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
 import "../style/signup.scss";
-import { collection, addDoc } from "firebase/firestore";
 import { SignUpDto } from "../dto/authDto";
 
 const Signup = () => {
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPassword, setRegisterPassword] = useState<string>("");
   const onJoin = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user);
-    } catch (error: any) {
-      console.log(error.message);
-    }
+    const auth = getAuth();
+    const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+    console.log(user);
   };
 
   return (

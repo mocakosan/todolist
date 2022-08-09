@@ -15,6 +15,7 @@ const Addboard = () => {
       await addDoc(listRef, {
         title: newTitle,
         content: newContent,
+        token: localStorage.getItem("login-token"),
       });
       navigate("/home");
     } catch (e) {

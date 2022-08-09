@@ -7,16 +7,15 @@ import { Cookies } from "react-cookie";
 
 const Header = () => {
   const navigate = useNavigate();
-  const cookies = new Cookies();
   const onLogout = async () => {
     await signOut(auth);
-    cookies.remove("X-ACCESS-TOKEN");
+    localStorage.clear();
     navigate("/signin");
     alert("로그아웃 되었습니다.");
   };
   return (
     <div className="header">
-      <div className="header-home" onClick={() => navigate("/home")}>
+      <div className="header-home">
         <h1>todolist</h1>
       </div>
       <div className="header-button">
