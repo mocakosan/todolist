@@ -3,7 +3,10 @@ import "../style/header.scss";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../shared/firebase";
-import { Cookies } from "react-cookie";
+import { Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,12 +22,9 @@ const Header = () => {
         <h1>todolist</h1>
       </div>
       <div className="header-button">
-        <button className="bt-upload" onClick={() => navigate("/addboard")}>
-          업로드
-        </button>
-        <button className="bt-logout" onClick={onLogout}>
-          로그아웃
-        </button>
+        <AddIcon className="bt-upload" onClick={() => navigate("/addboard")} />
+        <LogoutIcon className="bt-logout" onClick={onLogout} />
+        <PersonIcon className="bt-user" onClick={() => navigate("/mypage")}></PersonIcon>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import SignIn from "./pages/SignIn";
 import Addboard from "./pages/Addboard";
 import UpDateList from "./pages/UpDateList";
+import Mypage from "./pages/Mypage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/UpDateList" element={<UpDateList />} />
           <Route path="/addboard" element={<Addboard />} />
+          <Route path="/mypage" element={<Mypage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -3,3 +3,5 @@ export interface SignUpDto {
   name_ref: string;
   pw_ref: string;
 }
+
+export interface BoardDto {}

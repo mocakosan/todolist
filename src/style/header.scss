@@ -10,6 +10,10 @@
     margin-left: 3rem;
   }
   .header-button{
-    margin-right: 1rem;
+    margin-right: 2rem;
+    .bt-upload,.bt-logout, .bt-user{
+      margin-right: 2rem;
+      cursor: pointer;
+    }
   }
 }
